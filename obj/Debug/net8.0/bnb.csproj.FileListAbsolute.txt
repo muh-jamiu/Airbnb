@@ -44,3 +44,4 @@ C:\Users\Tokyo\Downloads\MyLaravelProject\c#\Airbnb\bnb\obj\Debug\net8.0\refint\
 C:\Users\Tokyo\Downloads\MyLaravelProject\c#\Airbnb\bnb\obj\Debug\net8.0\bnb.pdb
 C:\Users\Tokyo\Downloads\MyLaravelProject\c#\Airbnb\bnb\obj\Debug\net8.0\bnb.genruntimeconfig.cache
 C:\Users\Tokyo\Downloads\MyLaravelProject\c#\Airbnb\bnb\obj\Debug\net8.0\ref\bnb.dll
+C:\Users\Tokyo\Downloads\MyLaravelProject\c#\Airbnb\bnb\obj\Debug\net8.0\bnb.sourcelink.json
