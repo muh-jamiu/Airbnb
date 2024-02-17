@@ -8,7 +8,8 @@ namespace Users.models{
         public string? id { get; set; }
         public string name { get; set; } = null!;
         public string price { get; set; } = null!;
-        public UsersModel owner { get; set; } = null!;
+        
+        public string owner { get; set; }
 
     }
 }

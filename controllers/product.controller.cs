@@ -23,10 +23,17 @@ namespace bnb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> UploadProductAsync([FromBody] Product product)
-        {            
+        {
             await _mongodbService.UploadProductAsync(product);
             return Ok("Product is uploaded successfully");
         }
+
+        [HttpGet("{owner}")]
+        public async Task<List<Product>> GetProductByOwnerAsync(string owner)
+        {            
+            return await _mongodbService.GetProductByOwnerAsync(owner);
+        }
         
+   
     }
 }

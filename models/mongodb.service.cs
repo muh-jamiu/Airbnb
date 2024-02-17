@@ -83,5 +83,10 @@ namespace Users.service
             return;
         }
 
+        public async Task<List<Product>> GetProductByOwnerAsync(string owner)
+        {
+            return await _Product.Find(_ => _.owner == owner).ToListAsync();
+        }
+
     }
 }
