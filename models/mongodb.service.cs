@@ -15,13 +15,28 @@ namespace Users.service
             MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DBName);
             _UserCollection = database.GetCollection<UsersModel>(mongoDBSettings.Value.CollectionName);
-            _Product = database.GetCollection<Product>(mongoDBSettings.Value.CollectionName);
+            _Product = database.GetCollection<Product>("product");
         }
 
-        public async Task RegisteUserAsync(UsersModel user)
+        public async Task<string> RegisteUserAsync(UsersModel user)
         {
+            UsersModel users =  _UserCollection.Find(_ => _.email == user.email).FirstOrDefault();
+            if(users !=  null){
+                return "user already existed";
+            }
+
             await _UserCollection.InsertOneAsync(user);
-            return;
+            return "User created successfully";
+        }
+
+        public async Task<string> LoginUserAsync(UsersModel user)
+        {
+            UsersModel users =  _UserCollection.Find(_ => _.email == user.email).FirstOrDefault();
+            if(users ==  null){
+                return "user does not existed";
+            }
+            
+            return $"User {users.name} is login successfully";
         }
 
         public async Task<List<UsersModel>> GetTaskAsync()
@@ -54,6 +69,18 @@ namespace Users.service
             await _UserCollection.DeleteOneAsync(filter);
             return "User is deleted successfully";
             
+        }
+
+        // product service
+        public async Task<List<Product>> GetProductAsync()
+        {
+            return await _Product.Find(_ => true).ToListAsync();
+        }
+
+        public async Task UploadProductAsync(Product product)
+        {
+            await _Product.InsertOneAsync(product);
+            return;
         }
 
     }

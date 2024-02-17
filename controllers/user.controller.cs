@@ -23,10 +23,16 @@ namespace bnb.controllers
         }
 
         [HttpPost("user/register")]
-        public async Task<IActionResult> RegisterUserAsync([FromBody] UsersModel user)
+        public async Task<string> RegisterUserAsync([FromBody] UsersModel user)
         {
-            await _mongodbService.RegisteUserAsync(user);
-            return Ok("user is creaeted");
+            return await _mongodbService.RegisteUserAsync(user);
+        }
+
+        
+        [HttpPost("user/login")]
+        public async Task<string> LoginUserAsync([FromBody] UsersModel user)
+        {
+            return await _mongodbService.LoginUserAsync(user);
         }
 
         [HttpGet("user/{id}")]
