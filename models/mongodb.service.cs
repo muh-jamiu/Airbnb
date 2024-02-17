@@ -35,6 +35,12 @@ namespace Users.service
             if(users ==  null){
                 return "user does not existed";
             }
+
+            var verify = PasswordHasher.VerifyPassword(user.password, users.password);
+
+            if(!verify){
+                return "Password does not correct";
+            }
             
             return $"User {users.name} is login successfully";
         }

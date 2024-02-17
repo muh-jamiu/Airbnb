@@ -25,7 +25,14 @@ namespace bnb.controllers
         [HttpPost("user/register")]
         public async Task<string> RegisterUserAsync([FromBody] UsersModel user)
         {
-            return await _mongodbService.RegisteUserAsync(user);
+            var users = new UsersModel {
+                name = user.name,
+                email = user.email,
+                password = PasswordHasher.HashPassword(user.password),
+                phone = user.phone,
+            };
+            
+            return await _mongodbService.RegisteUserAsync(users);
         }
 
         
